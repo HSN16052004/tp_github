@@ -1,0 +1,18 @@
+name: Verification HTML
+on:
+  push:
+    branches: [ LABOS ]
+jobs:
+  verif:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+      - name: Vérification du fichier index.html
+        run: |
+          if [ -f index.html ]; then
+            echo "index.html est présent !"
+          else
+            echo "index.html est manquant !"
+            exit 1
+          fi
